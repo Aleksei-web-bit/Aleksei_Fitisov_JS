@@ -1,29 +1,16 @@
-function isPrime( num) {
-     if ( num < 4) { return true}
-     for ( let i = 3; i <= Math.sqrt( num); i += 2)
-     {
-          if ( num % i === 0)
-          {
-               return false;
-          }
-     }
-     return true;
+// Функцию, которая по числу определяет, является ли оно простым
+function isPrime(num) {
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) return false;
+  }
+  return num !== 1;
 }
 
-let m = Number( process.argv[2]), 
-     n = Number( process.argv[3]);
-if (( m <= 0) || ( n <= 0) || ( n < m))
-{
-     console.log( "допустимы положительные числа m<n");
-     exit();
+// Функция, выводящая простые числа в заданном диапазоне
+function printPrimes(max) {
+  for (let i = 2; i <= max; i++) {
+    if (isPrime(i)) console.log(i);
+  }
 }
 
-let k = 0, num;
-if ( m <= 2) { k++} // 2 - простое
-if ( m % 2 === 0) { m++}
-for ( num = m; num <= n; num += 2)
-{
-    if ( isPrime( num)) { k++}
-     console.log( num, simple( num), k);
-}
-console.log( `На интервале от ${m} до ${n} найдено ${k} простых чисел.`)
+printPrimes(7920);
